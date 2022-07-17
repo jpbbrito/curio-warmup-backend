@@ -1,4 +1,5 @@
 require('dotenv').config()
+const cron = require('node-cron')
 
 const { deleteProblem, getProblemByUUID, saveProblem } = require('./src/services/curio-api')
 
@@ -36,4 +37,7 @@ async function main (apiKey, endpoint) {
   return false
 }
 
-main(process.env.API_KEY, process.env.ENDPOINT)
+cron.schedule('0 5,17 * * *', () => {
+  console.log('running a task every minute')
+  main(process.env.API_KEY, process.env.ENDPOINT)
+})
