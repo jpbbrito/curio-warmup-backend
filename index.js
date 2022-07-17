@@ -38,6 +38,6 @@ async function main (apiKey, endpoint) {
 }
 
 cron.schedule('0 5,17 * * *', () => {
-  console.log('running a task every minute')
+  console.log('running a task!')
   main(process.env.API_KEY, process.env.ENDPOINT)
 })
